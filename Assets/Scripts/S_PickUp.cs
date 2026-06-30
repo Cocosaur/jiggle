@@ -1,0 +1,39 @@
+using UnityEngine;
+
+public class S_PickUp : MonoBehaviour
+{
+    public bool Pressed = false;
+
+    public Camera CurrentCamera;
+    private float cameraDistance;
+    void OnMouseDown()
+    {
+        Pressed = true;
+        GetComponent<Rigidbody>().isKinematic = true;
+        Debug.Log("is down");
+
+        cameraDistance = Vector3.Distance(transform.position, CurrentCamera.transform.position);
+    }
+    
+    void OnMouseUp()
+    {
+        Pressed = false;
+        GetComponent<Rigidbody>().isKinematic = false;
+        Debug.Log("is up");
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Pressed)
+        {
+            Vector3 mousePos = Input.mousePosition;
+            mousePos.z = cameraDistance;
+            
+            mousePos = CurrentCamera.ScreenToWorldPoint(mousePos);
+            //print(mousePos);
+            mousePos.z = 0;
+            transform.position = mousePos;
+        }
+    }
+}

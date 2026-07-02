@@ -6,8 +6,15 @@ public class S_PickUp : MonoBehaviour
 
     public Camera CurrentCamera;
     private float cameraDistance;
+
+    public bool pickUpable;
     void OnMouseDown()
     {
+        if (pickUpable == false)
+        {
+            return;
+        }
+
         Pressed = true;
         GetComponent<Rigidbody>().isKinematic = true;
         Debug.Log("is down");

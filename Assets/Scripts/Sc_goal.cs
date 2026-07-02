@@ -12,6 +12,8 @@ public class Sc_goal : MonoBehaviour
     private string playerName = "Player";
     public GameObject restartButton;
     public GameObject winner;
+    public S_PickUp pinkPlayer;
+    public S_PickUp purplePlayer;
         
     public TextMeshProUGUI countText;
     public TextMeshProUGUI countTextPrpl;
@@ -26,7 +28,7 @@ public class Sc_goal : MonoBehaviour
             Debug.Log("player pink has scored" + countPink);
             
             SetCountText();
-
+            CheckScores();
         }
         
         if (other.collider.CompareTag("player-pink"))
@@ -35,15 +37,7 @@ public class Sc_goal : MonoBehaviour
            Debug.Log("player purple has scored" + countPurple);
            
            SetCountText();
-        }
-        
-        if (other.collider.CompareTag("unicorn"))
-        {
-            countUnicorn = countUnicorn + 1;
-            Debug.Log("player has scored" + countUnicorn);
-            
-            SetCountText();
-
+           CheckScores();
         }
         
     }
@@ -51,7 +45,6 @@ public class Sc_goal : MonoBehaviour
     void Start()
     {
         SetCountText();
-        winCondition = false;
         restartButton.SetActive(false);
         winner.SetActive(false);
 
@@ -59,7 +52,6 @@ public class Sc_goal : MonoBehaviour
     
     void SetCountText()
     {
-        //countText.text = "Dummy Score " + countUnicorn.ToString();
         countTextPrpl.text = "Purple Score " + countPurple.ToString();
         countTextPnk.text = "Pink Score " + countPink.ToString();
     }
@@ -69,39 +61,41 @@ public class Sc_goal : MonoBehaviour
         winnerText.text = playerName + " has won!";
     }
 
-    void Update()
-    {
-        if (countUnicorn>=3)
-        { 
-            winCondition = true;
-            Debug.Log("Player has won");
-        }
-        
-        if (countPurple>=3)
-        { 
-            winCondition = true;
-            
-            playerName = "Purple";
-            
-            winner.SetActive(true);
-            SetWinnerText();
-            restartButton.SetActive(true);
-        }
-        
-        if (countPink>=3)
-        { 
-            winCondition = true;
-            playerName = "Pink";
-            
-            winner.SetActive(true);
-            SetWinnerText();
-            restartButton.SetActive(true);
-        }
-    }
+ 
 
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Debug.Log("the scene has restarted");
+    }
+
+    void CheckScores()
+    {
+        if (countPurple>=3)
+        { 
+            winCondition = true;
+            
+            playerName = "Purple";
+            endOfRound();
+        }
+        
+        if (countPink>=3)
+        { 
+            winCondition = true;
+            
+            playerName = "Pink";
+            endOfRound();
+        }
+    }
+    
+
+    void endOfRound()
+    {
+            winner.SetActive(true);
+            SetWinnerText();
+            restartButton.SetActive(true);
+
+            pinkPlayer.pickUpable = false;
+            purplePlayer.pickUpable = false;
     }
 }

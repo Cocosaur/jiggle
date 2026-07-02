@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Sc_goal : MonoBehaviour
 {
@@ -8,10 +9,14 @@ public class Sc_goal : MonoBehaviour
     private int countPink;
     private int countUnicorn;
     public bool winCondition;
+    private string playerName = "Player";
+    public GameObject restartButton;
+    public GameObject winner;
         
     public TextMeshProUGUI countText;
     public TextMeshProUGUI countTextPrpl;
     public TextMeshProUGUI countTextPnk;
+    public TextMeshProUGUI winnerText;
     
     private void OnCollisionEnter(Collision other)
     {
@@ -47,6 +52,8 @@ public class Sc_goal : MonoBehaviour
     {
         SetCountText();
         winCondition = false;
+        restartButton.SetActive(false);
+        winner.SetActive(false);
 
     }
     
@@ -57,24 +64,44 @@ public class Sc_goal : MonoBehaviour
         countTextPnk.text = "Pink Score " + countPink.ToString();
     }
 
+    void SetWinnerText()
+    {
+        winnerText.text = playerName + " has won!";
+    }
+
     void Update()
     {
-        if (countUnicorn.Equals(3))
+        if (countUnicorn>=3)
         { 
             winCondition = true;
             Debug.Log("Player has won");
         }
         
-        if (countPurple.Equals(3))
+        if (countPurple>=3)
         { 
             winCondition = true;
-            Debug.Log("Pink has won");
+            
+            playerName = "Purple";
+            
+            winner.SetActive(true);
+            SetWinnerText();
+            restartButton.SetActive(true);
         }
         
-        if (countPink.Equals(3))
+        if (countPink>=3)
         { 
             winCondition = true;
-            Debug.Log("Purple has won");
+            playerName = "Pink";
+            
+            winner.SetActive(true);
+            SetWinnerText();
+            restartButton.SetActive(true);
         }
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Debug.Log("the scene has restarted");
     }
 }

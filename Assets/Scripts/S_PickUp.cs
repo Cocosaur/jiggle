@@ -1,3 +1,4 @@
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
 public class S_PickUp : MonoBehaviour
@@ -8,6 +9,7 @@ public class S_PickUp : MonoBehaviour
     private float cameraDistance;
 
     public bool pickUpable;
+   
     void OnMouseDown()
     {
         if (pickUpable == false)
@@ -17,7 +19,6 @@ public class S_PickUp : MonoBehaviour
 
         Pressed = true;
         GetComponent<Rigidbody>().isKinematic = true;
-        Debug.Log("is down");
 
         cameraDistance = Vector3.Distance(transform.position, CurrentCamera.transform.position);
     }
@@ -26,7 +27,15 @@ public class S_PickUp : MonoBehaviour
     {
         Pressed = false;
         GetComponent<Rigidbody>().isKinematic = false;
-        Debug.Log("is up");
+    }
+
+    void ClenchDefense()
+    {
+        
+        Debug.Log("clenching activated");
+        //modify rigidbody mass (make player heavier)
+        
+
     }
 
     // Update is called once per frame
@@ -41,6 +50,11 @@ public class S_PickUp : MonoBehaviour
             //print(mousePos);
             mousePos.z = 0;
             transform.position = mousePos;
+        }
+        
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ClenchDefense();
         }
     }
 }

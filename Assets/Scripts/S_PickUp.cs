@@ -11,7 +11,7 @@ public class S_PickUp : MonoBehaviour
     public bool pickUpable;
    
     void OnMouseDown()
-    {
+    { 
         if (pickUpable == false)
         {
             return;

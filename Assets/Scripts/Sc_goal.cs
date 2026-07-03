@@ -20,6 +20,7 @@ public class Sc_goal : MonoBehaviour
     public TextMeshProUGUI countTextPnk;
     public TextMeshProUGUI winnerText;
     
+    
     private void OnCollisionEnter(Collision other)
     {
         if (other.collider.CompareTag("player-purple"))

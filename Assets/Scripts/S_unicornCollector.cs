@@ -74,7 +74,7 @@ public class S_unicornCollector : MonoBehaviour
         {
             Win.SetActive(false);
             TooMany.SetActive(true);
-            timerTextObject.SetActive(false);
+            //timerTextObject.SetActive(false);
             print("the countdown has stopped");
 
         }
@@ -83,7 +83,7 @@ public class S_unicornCollector : MonoBehaviour
         {
             Win.SetActive(false);
             TooMany.SetActive(false);
-            timerTextObject.SetActive(false);
+            //timerTextObject.SetActive(false);
             print("the countdown has stopped");
 
         } 
@@ -106,6 +106,7 @@ public class S_unicornCollector : MonoBehaviour
     void Start()
     {
         SetCountText();
+        SetTimerText();
         StartCountdown();
         Win.SetActive(false);
         TooMany.SetActive(false);

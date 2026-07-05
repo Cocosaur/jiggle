@@ -72,7 +72,6 @@ public class S_unicornCollector : MonoBehaviour
         if (unicornCount == unicornObjective)
         {
             TooMany.SetActive(false);
-            Wait.SetActive(false);
             RestartButton.SetActive(false);
             
             StartCountdown();

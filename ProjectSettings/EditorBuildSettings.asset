@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/pick-up.unity
     guid: 719dfc7de1c8b964baf337214e499ce1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/tidyTheUnicorns.unity
     guid: edfb72ec6b974ad429eb900937d33bb3
+  - enabled: 1
+    path: Assets/Scenes/artScene.unity
+    guid: dd0bb48e74b62b649bd38e5d2bec23c8
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

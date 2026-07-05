@@ -5,13 +5,14 @@ public class S_unicornSpawner : MonoBehaviour
 
     public S_unicornCollector uniCollector;
     public int additionalSpawnCount = 2;
-    public GameObject spawnObject;
+    public S_unicornMovement spawnObject;
     public float spawnOffset;
     void SpawningUnicorns()
     {
         for (int i = 0; i < uniCollector.unicornObjective+additionalSpawnCount; i++)
         {
-            Instantiate(spawnObject, transform.position + Vector3.right * i *spawnOffset ,Quaternion.identity);    
+            S_unicornMovement _unicorn = Instantiate(spawnObject, transform.position + Vector3.right * i *spawnOffset ,Quaternion.identity);
+            _unicorn.collector = uniCollector;
         }
     }
     

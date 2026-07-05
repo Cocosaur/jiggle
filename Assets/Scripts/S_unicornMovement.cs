@@ -12,6 +12,8 @@ public class S_unicornMovement : MonoBehaviour
     private float bounceTimer;
     public float bounceForce;
 
+    public S_unicornCollector collector;
+
     public float unicornGravity;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,6 +31,13 @@ public class S_unicornMovement : MonoBehaviour
 
     void Update()
     {
+
+
+        if (collector.gameWon)
+        {
+            return;
+        }
+
         bounceTimer += Time.deltaTime;
 
         if (bounceTimer >= currentDurationBetweenBounces)

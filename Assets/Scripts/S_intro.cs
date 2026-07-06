@@ -19,14 +19,7 @@ public class S_intro : MonoBehaviour
         phrase2object.SetActive(false);
         playButton.SetActive(false);
     }
-
-    private void OnMouseUp()
-    {
-        phrase1object.SetActive(false);
-        phrase2object.SetActive(true);
-        playButton.SetActive(true);
-
-    }
+    
     
     public void PlayGame()
     {

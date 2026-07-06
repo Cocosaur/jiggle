@@ -33,10 +33,10 @@ public class S_unicornMovement : MonoBehaviour
     {
 
 
-        if (collector.gameWon)
+        if (collector != null) {if (collector.gameWon)
         {
             return;
-        }
+        }}
 
         bounceTimer += Time.deltaTime;
 

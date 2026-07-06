@@ -72,7 +72,6 @@ public class S_unicornCollector : MonoBehaviour
         if (unicornCount == unicornObjective)
         {
             TooMany.SetActive(false);
-            RestartButton.SetActive(false);
             
             StartCountdown();
             
@@ -84,6 +83,7 @@ public class S_unicornCollector : MonoBehaviour
         {
             Wait.SetActive(false);
             TooMany.SetActive(true);
+            Win.SetActive(false);
             
             StopCountdown();
             print("the countdown has stopped");
@@ -94,6 +94,7 @@ public class S_unicornCollector : MonoBehaviour
         {
             Wait.SetActive(false);
             TooMany.SetActive(false);
+            Win.SetActive(false);
             
             StopCountdown();
             print("the countdown has stopped");
@@ -143,7 +144,17 @@ public class S_unicornCollector : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(0);
+    }
+    
+    public void ToLevel2()
+    {
+        SceneManager.LoadScene(2);
+    }
+    
+    public void ToLevel3()
+    {
+        SceneManager.LoadScene(3);
     }
 
     void Start()

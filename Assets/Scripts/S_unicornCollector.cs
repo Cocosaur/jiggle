@@ -14,7 +14,7 @@ public class S_unicornCollector : MonoBehaviour
     public float countdownStartValue;
     private bool countingDown;
     public bool gameWon;
-    public bool wakeThemUp;
+    private bool wakeThemUp;
     
 
     //public S_unicornMovement uniMovement;
@@ -77,14 +77,6 @@ public class S_unicornCollector : MonoBehaviour
 
     void CheckCount()
     {
-        if (wakeThemUp)
-        {
-            unicornObjective = 0;
-            
-            TooMany.SetActive(false);
-            
-            StartCountdown();
-        }
 
         if (unicornCount == unicornObjective)
         {
@@ -105,7 +97,6 @@ public class S_unicornCollector : MonoBehaviour
 
         if (unicornCount < unicornObjective)
         {
-
             Wait.SetActive(false);
             TooMany.SetActive(false);
             Win.SetActive(false);
@@ -117,18 +108,8 @@ public class S_unicornCollector : MonoBehaviour
 
     public void StartCountdown()
     {
-        if (wakeThemUp)
-        {
-            countingDown = false;
-            countdownStartValue = 0f;
-            
-            Wait.SetActive(false);
-            timerTextObject.SetActive(false);
-            
-            EndOfRound();
-        }
-
         countingDown = true;
+        
         countdown = countdownStartValue;
         
         Wait.SetActive(true);
@@ -208,8 +189,6 @@ public class S_unicornCollector : MonoBehaviour
         {
             return;
         }
-
-        
         
         if (countingDown)
         {

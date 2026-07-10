@@ -14,9 +14,10 @@ public class S_unicornCollector : MonoBehaviour
     public float countdownStartValue;
     private bool countingDown;
     public bool gameWon;
+    public bool wakeThemUp;
     
 
-    public S_unicornMovement uniMovement;
+    //public S_unicornMovement uniMovement;
 
 
     public TextMeshProUGUI countText;
@@ -42,6 +43,7 @@ public class S_unicornCollector : MonoBehaviour
                 unicornCount++;
                 SetCountText();
             }
+            
         }
     }
 
@@ -57,6 +59,12 @@ public class S_unicornCollector : MonoBehaviour
 
     void SetCountText()
     {
+        if (wakeThemUp)
+        {
+            countText.text = "in bed " + unicornObjective + "/" + unicornCount.ToString();
+            CheckCount();
+        }
+
         countText.text = "in bed " + unicornCount.ToString() + "/" + unicornObjective;
         CheckCount();
     }
@@ -69,14 +77,20 @@ public class S_unicornCollector : MonoBehaviour
 
     void CheckCount()
     {
+        if (wakeThemUp)
+        {
+            unicornObjective = 0;
+            
+            TooMany.SetActive(false);
+            
+            StartCountdown();
+        }
+
         if (unicornCount == unicornObjective)
         {
             TooMany.SetActive(false);
             
             StartCountdown();
-            
-            print("the countdown has started");
-
         }
 
         if (unicornCount > unicornObjective)
@@ -86,29 +100,38 @@ public class S_unicornCollector : MonoBehaviour
             Win.SetActive(false);
             
             StopCountdown();
-            print("the countdown has stopped");
 
         }
 
         if (unicornCount < unicornObjective)
         {
+
             Wait.SetActive(false);
             TooMany.SetActive(false);
             Win.SetActive(false);
             
             StopCountdown();
-            print("the countdown has stopped");
 
         }
     }
 
     public void StartCountdown()
     {
+        if (wakeThemUp)
+        {
+            countingDown = false;
+            countdownStartValue = 0f;
+            
+            Wait.SetActive(false);
+            timerTextObject.SetActive(false);
+            
+            EndOfRound();
+        }
 
         countingDown = true;
         countdown = countdownStartValue;
-        Wait.SetActive(true);
         
+        Wait.SetActive(true);
         timerTextObject.SetActive(true);
         
     }
@@ -159,6 +182,11 @@ public class S_unicornCollector : MonoBehaviour
 
     void Start()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            WakeThoseLittleShits();
+        }
+
         SetCountText();
         SetTimerText();
         StartCountdown();
@@ -167,6 +195,11 @@ public class S_unicornCollector : MonoBehaviour
         TooMany.SetActive(false);
         RestartButton.SetActive(false);
         timerTextObject.SetActive(false);
+    }
+    
+    void WakeThoseLittleShits()
+    {
+        wakeThemUp = true;
     }
 
     private void Update()
@@ -183,4 +216,6 @@ public class S_unicornCollector : MonoBehaviour
             CountdownUpdate();
         }
     }
+
+    
 }

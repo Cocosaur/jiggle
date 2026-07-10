@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.23, y: 20.430002, z: 0.06}
-  m_LocalScale: {x: 23.482164, y: 4.5015354, z: 10.714554}
+  m_LocalScale: {x: 11.36261, y: 4.103645, z: 9.767494}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -122,6 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uniCollector: {fileID: 0}
-  additionalSpawnCount: 2
+  additionalSpawnCount: 0
   spawnObject: {fileID: 3994679374206997199, guid: 2da4f02f71c7f614b95a311dff2c1d09, type: 3}
   spawnOffset: 3
